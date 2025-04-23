@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
@@ -10,6 +9,11 @@ const app = express();
 app.use(express.json()); // Body parser
 
 connectDB(); // Connect MongoDB
+
+// ✅ Add this route for the homepage
+app.get("/", (req, res) => {
+  res.send("🚀 Product API is running on Render!");
+});
 
 app.use("/api/orders", orderRoutes); // Routes
 
