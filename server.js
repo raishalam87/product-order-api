@@ -2,15 +2,21 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const orderRoutes = require("./routes/orderRoutes");
+const cors = require("cors"); // ✅ Step 1: Import cors
 
 dotenv.config(); // Load .env
 
 const app = express();
-app.use(express.json()); // Body parser
+
+// ✅ Step 2: Enable cors
+app.use(cors());
+
+// ✅ Step 3: Parse JSON bodies
+app.use(express.json()); 
 
 connectDB(); // Connect MongoDB
 
-// ✅ Add this route for the homepage
+// ✅ Step 4: Default route for Render
 app.get("/", (req, res) => {
   res.send("🚀 Product API is running on Render!");
 });
